@@ -1,0 +1,2 @@
+# 줄바꿈을 LF로 통일 (Windows/Mac 차이 방지)
+* text=auto eol=lf
