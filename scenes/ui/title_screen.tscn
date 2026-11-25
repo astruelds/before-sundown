@@ -45,8 +45,8 @@ theme_override_font_sizes/font_size = 24
 text = "UI_STEP0_HINT"
 horizontal_alignment = 1
 
-[node name="LanguageButton" type="Button" parent="VBox"]
+[node name="SettingsButton" type="Button" parent="VBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 28
-text = "UI_LANGUAGE_TOGGLE"
+text = "UI_SETTINGS"
