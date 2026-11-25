@@ -13,6 +13,12 @@ var max_energy: int = START_MAX_ENERGY
 var energy: int = START_MAX_ENERGY
 var has_wound: bool = false
 var coins: int = 0
+## 손에 든 무기. 무기 단계(1-11)에서 WeaponData Resource를 넣는다. 지금은 비어 있음(null).
+var held_weapon: Resource = null
+## 이미 털린 물건의 ID 목록. 씬에 다시 와도 빈 상태로 보이게 한다. 예: "3f_fridge_01"
+var looted_ids: Array[String] = []
+## 숨을 곳별 남은 숨 참기 시간(초). 예: hide_spot_remaining["3f_locker_02"] = 12.5
+var hide_spot_remaining: Dictionary = {}
 ## 이벤트 진행 기록. 예: flags["rat_cutscene_seen"] = true
 var flags: Dictionary = {}
 
@@ -23,9 +29,21 @@ func reset() -> void:
 	energy = START_MAX_ENERGY
 	has_wound = false
 	coins = 0
+	held_weapon = null
+	looted_ids.clear()
+	hide_spot_remaining.clear()
 	flags.clear()
 	energy_changed.emit(energy, max_energy)
 	coins_changed.emit(coins)
+
+
+func mark_looted(item_id: String) -> void:
+	if not looted_ids.has(item_id):
+		looted_ids.append(item_id)
+
+
+func is_looted(item_id: String) -> bool:
+	return looted_ids.has(item_id)
 
 
 func set_flag(flag_name: String, value: bool = true) -> void:
